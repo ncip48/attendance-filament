@@ -12,6 +12,8 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class AdminWidgets extends BaseWidget
 {
+    protected static ?string $pollingInterval = '10s';
+
     public static function canView(): bool
     {
         return auth()->user()->role_id == 1;

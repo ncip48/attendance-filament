@@ -12,6 +12,8 @@ class LatestAttendances extends BaseWidget
 {
     protected static ?string $heading = '5  Karyawan Terakhir';
 
+    protected static ?string $pollingInterval = '10s';
+
     public function table(Table $table): Table
     {
         return $table
