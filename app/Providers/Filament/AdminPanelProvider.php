@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -27,8 +28,14 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            // ->navigationItems([
+            //     NavigationItem::make('Karyawan', Pages\ListRecords::class)
+            //         ->icon('heroicon-o-home')
+            //         ->visible(fn (): bool => auth()->user()->role_id == 2),
+
+            // ])
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Purple,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

@@ -22,6 +22,12 @@ class EmployeeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    // protected static ?string $activeNavigationIcon = 'heroicon-s-document-text';
+
+    protected static ?string $navigationLabel = 'Karyawan';
+
+    // protected static ?int $navigationSort = 3;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -80,6 +86,7 @@ class EmployeeResource extends Resource
                     ->options([
                         '0' => 'Laki-laki',
                         '1' => 'Perempuan',
+                        '2' => 'Lainnya',
                     ])
                     ->label('Jenis Kelamin'),
                 Forms\Components\Select::make('department_id')
@@ -99,7 +106,7 @@ class EmployeeResource extends Resource
                     ->preload()
                     ->required()
                     ->options([
-                        '0' => 'SMA',
+                        '0' => 'SMA/SMK',
                         '1' => 'D3',
                         '2' => 'S1',
                         '3' => 'S2',
@@ -111,6 +118,7 @@ class EmployeeResource extends Resource
                     ->image()
                     ->rules('image', 'max:1024')
                     ->imageCropAspectRatio('1:1')
+                    ->columnSpan(2)
             ]);
     }
 
@@ -152,7 +160,7 @@ class EmployeeResource extends Resource
                     ->sortable()
                     ->label('Pendidikan Terakhir')
                     ->formatStateUsing(fn (string $state): string => match ($state) {
-                        '0' => 'SMA',
+                        '0' => 'SMA/SMK',
                         '1' => 'D3',
                         '2' => 'S1',
                         '3' => 'S2',
@@ -165,10 +173,12 @@ class EmployeeResource extends Resource
                     ->color(fn (string $state): string => match ($state) {
                         '0' => 'warning',
                         '1' => 'info',
+                        '2' => 'danger'
                     })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         '0' => 'Laki-laki',
                         '1' => 'Perempuan',
+                        '2' => 'Lainnya',
                     }),
                 Tables\Columns\ImageColumn::make('photo')
                     ->label('Foto')

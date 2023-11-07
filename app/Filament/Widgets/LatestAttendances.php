@@ -31,6 +31,8 @@ class LatestAttendances extends BaseWidget
                 TextColumn::make('department.name')
                     ->searchable()
                     ->sortable(),
-            ]);
+            ])
+            //size of table
+            ->striped();
     }
 }
