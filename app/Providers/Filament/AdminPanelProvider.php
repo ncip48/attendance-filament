@@ -26,7 +26,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('app')
+            ->path('')
             ->login()
             // ->navigationItems([
             //     NavigationItem::make('Karyawan', Pages\ListRecords::class)
