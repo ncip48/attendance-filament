@@ -2,7 +2,9 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Attendance;
 use App\Models\Employee;
+use Carbon\Carbon;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -10,7 +12,7 @@ use Filament\Widgets\TableWidget as BaseWidget;
 
 class LatestAttendances extends BaseWidget
 {
-    protected static ?string $heading = '5  Karyawan Terakhir';
+    protected static ?string $heading = '5 Absensi Terakhir Hari Ini';
 
     protected static ?string $pollingInterval = '10s';
 
@@ -18,23 +20,29 @@ class LatestAttendances extends BaseWidget
     {
         return $table
             ->query(
-                Employee::query()
+                Attendance::query()
                     ->orderByDesc('created_at')
-                    ->with('department')
+                    ->with('employee')
                     ->limit(5)
+                    ->whereDate('created_at', Carbon::today())
             )
             ->columns([
-                TextColumn::make('nip')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('department.name')
-                    ->searchable()
-                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->label('Tanggal')
+                    //format date to d-m-Y
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        default => Carbon::parse($state)->format('d M Y'),
+                    }),
+                TextColumn::make('clock_in'),
+                TextColumn::make('clock_out'),
+                TextColumn::make('employee.nip')
+                    ->label('NIP'),
+                TextColumn::make('employee.name')
+                    ->label('Nama'),
             ])
             //size of table
-            ->striped();
+            ->striped()
+            ->emptyStateHeading('Tidak ada data')
+            ->paginated(false);
     }
 }

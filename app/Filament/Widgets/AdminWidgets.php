@@ -16,7 +16,7 @@ class AdminWidgets extends BaseWidget
 
     public static function canView(): bool
     {
-        return auth()->user()->role_id == 1;
+        return auth()->user()->role == 1;
     }
 
     protected function getStats(): array
