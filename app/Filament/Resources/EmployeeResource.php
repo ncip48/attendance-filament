@@ -118,6 +118,8 @@ class EmployeeResource extends Resource
                     ->image()
                     ->rules('image', 'max:1024')
                     ->imageCropAspectRatio('1:1')
+                    ->optimize('webp')
+                    ->resize(50)
                     ->columnSpan(2)
             ]);
     }
