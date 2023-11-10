@@ -26,7 +26,7 @@ class EmployeeResource extends Resource
 
     protected static ?string $navigationLabel = 'Karyawan';
 
-    // protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -193,6 +193,8 @@ class EmployeeResource extends Resource
                     ->query(fn (Builder $query): Builder => $query->where('gender', '0')),
                 Filter::make('Perempuan')
                     ->query(fn (Builder $query): Builder => $query->where('gender', '1')),
+                Filter::make('Lainnya')
+                    ->query(fn (Builder $query): Builder => $query->where('gender', '2')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -205,19 +207,10 @@ class EmployeeResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEmployees::route('/'),
-            'create' => Pages\CreateEmployee::route('/create'),
-            'edit' => Pages\EditEmployee::route('/{record}/edit'),
+            'index' => Pages\ManageEmployees::route('/'),
         ];
     }
 }

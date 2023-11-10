@@ -2,11 +2,13 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\Banned;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
+use Filament\Pages\Auth\EditProfile;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -28,6 +30,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('')
             ->login()
+            ->spa()
+            ->font('Poppins')
             // ->navigationItems([
             //     NavigationItem::make('Karyawan', Pages\ListRecords::class)
             //         ->icon('heroicon-o-home')
@@ -57,9 +61,14 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                // Banned::class,
+                // \Cog\Laravel\Ban\Http\Middleware\LogsOutBannedUser::class
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+                // Banned::class,
+                // \Cog\Laravel\Ban\Http\Middleware\LogsOutBannedUser::class
+            ])
+            ->profile(EditProfile::class);
     }
 }

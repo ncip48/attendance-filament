@@ -8,5 +8,5 @@ class Dashbaord extends BaseDashboard
 {
     protected static ?string $title = 'Dashboard';
 
-    protected static string $routePath = 'dashboard';
+    protected static string $routePath = '';
 }
