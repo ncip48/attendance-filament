@@ -184,7 +184,20 @@ class EmployeeResource extends Resource
                     }),
                 Tables\Columns\ImageColumn::make('photo')
                     ->label('Foto')
-                    ->circular()
+                    ->circular(),
+                Tables\Columns\TextColumn::make('banned_at')
+                    ->color(fn (string $state): string => match ($state) {
+                        $state => empty($state) ? 'success' : 'danger', // Change color based on condition
+                    })
+                    //if the banned_at not null then icon will be ban-circle
+                    // ->icon(fn (string $state): string => match ($state) {
+                    //     $state => !empty($state) ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle',
+                    // })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        $state => empty($state) ? 'Active' : 'Banned', // Change label based on condition
+                    })
+                    ->badge()
+                    ->label('Status'),
             ])
             ->groups([
                 Group::make('department.name')
@@ -201,6 +214,14 @@ class EmployeeResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->successNotificationTitle(fn () => __('Karyawan berhasil dihapus')),
+                \Widiu7omo\FilamentBandel\Actions\BanAction::make()
+                    ->color('danger')
+                    ->label('')
+                    ->successNotificationTitle(fn () => __('Karyawan berhasil dibanned')),
+                \Widiu7omo\FilamentBandel\Actions\UnbanAction::make()
+                    ->color('success')
+                    ->label('')
+                    ->successNotificationTitle(fn () => __('Karyawan berhasil diunbanned')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cog\Contracts\Ban\Bannable as BannableContract;
 
-class Employee extends Model
+class Employee extends Model implements BannableContract
 {
-    use HasFactory;
+    use HasFactory, Bannable;
 
     protected $fillable = [
         'nip',

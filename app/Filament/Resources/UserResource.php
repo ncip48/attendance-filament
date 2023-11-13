@@ -101,9 +101,11 @@ class UserResource extends Resource
                     ->successNotificationTitle(fn () => __('User berhasil dihapus')),
                 \Widiu7omo\FilamentBandel\Actions\BanAction::make()
                     ->color('danger')
+                    ->label('')
                     ->successNotificationTitle(fn () => __('User berhasil dibanned')),
                 \Widiu7omo\FilamentBandel\Actions\UnbanAction::make()
                     ->color('success')
+                    ->label('')
                     ->successNotificationTitle(fn () => __('User berhasil diunbanned')),
             ])
             ->bulkActions([
