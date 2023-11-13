@@ -16,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\Alignment;
 use Filament\Tables;
 use Filament\Tables\Actions\ForceDeleteAction;
 use Filament\Tables\Actions\RestoreAction;
@@ -177,7 +178,8 @@ class AttendanceResource extends Resource
                         Textarea::make('clock_out_note'),
                         FileUpload::make('clock_in_image'),
                         FileUpload::make('clock_out_image'),
-                    ]),
+                    ])
+                    ->modalAlignment(Alignment::Center),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1be055de84255b162741acdd93e107a4",
+    "content-hash": "ed305e1b008c0ba683b73d8263a1473d",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -4952,6 +4952,76 @@
                 }
             ],
             "time": "2023-02-14T16:54:54+00:00"
+        },
+        {
+            "name": "solution-forest/filament-tree",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/solutionforest/filament-tree.git",
+                "reference": "fee5cb771fc8061d57ae0e834d8003c1b0068fee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/solutionforest/filament-tree/zipball/fee5cb771fc8061d57ae0e834d8003c1b0068fee",
+                "reference": "fee5cb771fc8061d57ae0e834d8003c1b0068fee",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0",
+                "filament/support": "^3.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SolutionForest\\FilamentTree\\FilamentTreeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SolutionForest\\FilamentTree\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carly",
+                    "email": "info@solutionforest.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is a tree layout plugin for Filament Admin",
+            "homepage": "https://github.com/solution-forest/filament-tree",
+            "keywords": [
+                "Solution Forest",
+                "filament-tree",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/solution-forest/filament-tree/issues",
+                "source": "https://github.com/solution-forest/filament-tree"
+            },
+            "time": "2023-11-06T10:37:50+00:00"
         },
         {
             "name": "spatie/color",
