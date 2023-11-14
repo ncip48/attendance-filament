@@ -69,6 +69,8 @@ class AdminPanelProvider extends PanelProvider
                 // Banned::class,
                 // \Cog\Laravel\Ban\Http\Middleware\LogsOutBannedUser::class
             ])
+            // ->brandLogo(asset('img/logo.png'))
+            ->darkMode(true, true)
             ->profile(EditProfile::class);
     }
 }

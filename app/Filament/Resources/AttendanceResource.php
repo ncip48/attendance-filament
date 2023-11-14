@@ -36,7 +36,7 @@ class AttendanceResource extends Resource
 
     protected static ?string $navigationLabel = 'Absensi';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -106,7 +106,7 @@ class AttendanceResource extends Resource
             ->columns([
                 TextColumn::make('created_at')
                     ->searchable()
-                    ->label('Date')
+                    ->label('Tanggal')
                     //format date to d-m-Y
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         default => Carbon::parse($state)->format('d M Y'),
@@ -114,33 +114,41 @@ class AttendanceResource extends Resource
                     ->sortable(),
                 TextColumn::make('employee.name')
                     ->searchable()
+                    ->label('Nama')
                     ->sortable(),
                 TextColumn::make('clock_in')
                     ->searchable()
                     ->weight('bold')
+                    ->label('Jam Masuk')
                     ->sortable(),
                 TextColumn::make('clock_out')
                     ->searchable()
                     ->weight('bold')
+                    ->label('Jam Keluar')
                     ->sortable(),
                 TextColumn::make('clock_in_location')
                     ->searchable()
+                    ->label('Koordinat Masuk')
                     ->sortable(),
                 TextColumn::make('clock_out_location')
-
                     ->searchable()
+                    ->label('Koordinat Keluar')
                     ->sortable(),
                 TextColumn::make('clock_in_note')
                     ->searchable()
+                    ->label('Catatan Masuk')
                     ->sortable(),
                 TextColumn::make('clock_out_note')
                     ->searchable()
+                    ->label('Catatan Keluar')
                     ->sortable(),
                 ImageColumn::make('clock_in_image')
                     ->searchable()
+                    ->label('Gambar Absen Masuk')
                     ->sortable(),
                 ImageColumn::make('clock_out_image')
                     ->searchable()
+                    ->label('Gambar Absen Keluar')
                     ->sortable(),
             ])
             ->groups([

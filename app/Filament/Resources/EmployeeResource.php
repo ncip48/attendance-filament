@@ -26,7 +26,7 @@ class EmployeeResource extends Resource
 
     protected static ?string $navigationLabel = 'Karyawan';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -89,18 +89,18 @@ class EmployeeResource extends Resource
                         '2' => 'Lainnya',
                     ])
                     ->label('Jenis Kelamin'),
-                Forms\Components\Select::make('department_id')
+                Forms\Components\Select::make('position_id')
                     ->searchable()
                     ->preload()
                     ->required()
                     ->options(
-                        \App\Models\Department::query()
+                        \App\Models\Position::query()
                             ->orderBy('name')
                             ->pluck('name', 'id')
                             ->toArray()
                     )
-                    ->name('department_id')
-                    ->label('Divisi'),
+                    ->name('position_id')
+                    ->label('Jabatan'),
                 Forms\Components\Select::make('last_education')
                     ->searchable()
                     ->preload()
@@ -139,7 +139,11 @@ class EmployeeResource extends Resource
                     ->sortable()
                     ->weight('bold')
                     ->label('NIP'),
-                Tables\Columns\TextColumn::make('department.name')
+                Tables\Columns\TextColumn::make('position.level.name')
+                    ->searchable()
+                    ->sortable()
+                    ->label('Jabatan'),
+                Tables\Columns\TextColumn::make('position.department.name')
                     ->searchable()
                     ->sortable()
                     ->label('Divisi'),

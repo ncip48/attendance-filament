@@ -18,7 +18,7 @@ class Employee extends Model implements BannableContract
         'email',
         'phone_number',
         'address',
-        'department_id',
+        'position_id',
         'photo',
         'password',
         'last_education',
@@ -33,5 +33,10 @@ class Employee extends Model implements BannableContract
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
     }
 }

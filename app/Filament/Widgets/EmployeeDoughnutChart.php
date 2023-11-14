@@ -17,6 +17,7 @@ class EmployeeDoughnutChart extends ChartWidget
             'legend' => [
                 'display' => false,
             ],
+            //remove x and y grid
         ],
     ];
 
@@ -45,7 +46,7 @@ class EmployeeDoughnutChart extends ChartWidget
                         'rgb(255, 99, 132)',
                         'rgb(255, 159, 64)',
                         'rgb(255, 205, 86)',
-                    ]
+                    ],
                 ],
             ],
             'labels' => ['Laki-Laki', 'Perempuan', 'Lainnya'],
