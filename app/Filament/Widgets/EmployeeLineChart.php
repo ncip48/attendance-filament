@@ -31,12 +31,13 @@ class EmployeeLineChart extends ChartWidget
 
     protected function getData(): array
     {
-        $departments = Department::all();
+        $departments = Department::with('positions')->get();
+
         return [
             'datasets' => [
                 [
                     'label' => 'Karyawan',
-                    'data' => $departments->map(fn ($department) => $department->employees()->count())->toArray(),
+                    'data' => $departments->map(fn ($department) => $department->positions()->count())->toArray(),
                     'fill' => false,
                     'tension' => 0.5,
                 ],
